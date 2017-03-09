@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_admin
   before_action :set_user, only: [:show, :update, :destroy]
 
   # GET /v1/users
@@ -38,6 +39,16 @@ class UsersController < ApplicationController
   end
 
   private
+
+    # User functionalities can be done by admin
+    def authenticate_admin
+      user = User.where("email = ? AND password = ?", params[:user_email], params[:user_password]).first
+      if user.api_key != 'RF70F4yyqXEzdMgklqKQLAtt'
+        render json:{'error': 'You are credntials are authorized to access user'}, status: :unprocessable_entity
+      end
+    rescue
+      render json:{'error': 'You are not admin to access user'}, status: :unprocessable_entity
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
