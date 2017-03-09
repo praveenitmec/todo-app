@@ -59,6 +59,7 @@ GEM
       activesupport (>= 4.1.0)
     i18n (0.8.1)
     jsonapi-renderer (0.1.2)
+    jwt (1.5.6)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -145,6 +146,7 @@ DEPENDENCIES
   active_model_serializers
   byebug
   factory_girl_rails
+  jwt
   mysql2 (>= 0.3.18, < 0.5)
   puma (~> 3.0)
   rack-attack

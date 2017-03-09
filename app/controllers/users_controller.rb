@@ -1,6 +1,19 @@
+require 'jsonwebtoken'
 class UsersController < ApplicationController
-  before_action :authenticate_admin
+  before_action :authenticate_admin, except: [:login]
   before_action :set_user, only: [:show, :update, :destroy]
+
+
+  def login
+    user = User.find_by(email: params[:email].to_s.downcase)
+
+    if user && user.password == params[:password]
+        auth_token = JsonWebToken.encode({api_key: user.api_key})
+        render json: {auth_token: auth_token}, status: :ok
+    else
+      render json: {error: 'Invalid username / password'}, status: :unauthorized
+    end
+  end
 
   # GET /v1/users
   def index
