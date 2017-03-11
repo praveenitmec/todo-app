@@ -1,3 +1,4 @@
+require 'jsonwebtoken'
 module Api
   class ApiController < ApplicationController
 
@@ -34,7 +35,7 @@ module Api
 
     # Sets the @current_user with the user_id from payload
     def load_current_user!
-      @current_user = User.find_by(id: payload[0]['api_key'])
+      @current_user = User.find_by(api_key: payload[0]['api_key'])
     end
   end
 end

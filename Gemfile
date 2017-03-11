@@ -37,6 +37,11 @@ group :development, :test do
   # Use RSpec for specs
   gem 'rspec-rails', '>= 3.5.0'
 
+  #Debugger tools
+  gem 'pry'
+  gem 'pry-nav'
+  gem 'pry-rails'
+
   # Use Factory Girl for generating random test data
   gem 'factory_girl_rails'
 end
