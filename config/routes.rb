@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
       get '/test_method', to: 'test#test_method'
+      resources :todos
     end
   end
   resources :users
