@@ -39,6 +39,7 @@ module Api
       end
 
       def todo_params
+        params[:todo][:target_date] = 1.month.from_now if params[:todo][:target_date].blank?
         params.require(:todo).permit(:name, :target_date).merge!(user: @current_user)
       end
     end
